@@ -37,7 +37,6 @@ const App = props => {
       films = validate4Films(films, filmDataCycleCount);
 
       if (films.status === 'less_than_4_films') {
-        console.log('less_than_4_films', films);
         get4Films();
         return;
       }
@@ -48,7 +47,6 @@ const App = props => {
       }
 
       if (films.status === 'film_api_error') {
-        console.log('film_api_error');
         SetFilmDataLoading(false);
         SetFilmDataError(true);
       }
@@ -128,12 +126,7 @@ const App = props => {
         <FilmCardContainer>
           {!filmDataLoading && !filmDataError && filmCard}
         </FilmCardContainer>
-        {!filmDataError && !filmDataLoading && (
-          <Results
-            correctAnswers={correctAnswers}
-            wrongAnswers={wrongAnswers}
-          />
-        )}
+        {!filmDataError && !filmDataLoading && <Results />}
       </AppContainer>
     </AnswersContext.Provider>
   );
