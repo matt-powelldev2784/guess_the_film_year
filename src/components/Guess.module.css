@@ -1,0 +1,32 @@
+.form {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #777;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.form {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.input.nan {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+}
+
+.test {
+  background-color: teal;
+}

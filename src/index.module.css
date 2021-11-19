@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  /*font-size: 16px;*/
+  line-height: 1.7;
+  color: #777;
+}
+
+.full_page {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  text-align: center;
+  color: white;
+  font-size: 5.3rem;
+  font-family: 'Lato', sans-serif;
+  background-color: rgba(7, 7, 7, 0.9);
+  min-height: 100vh;
+}
+
+.film_card__container {
+  background-color: none;
+  padding: 0rem;
+  margin: 0rem 0rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to top,
+      rgba(7, 7, 7, 0.7),
+      rgba(7, 7, 7, 1)
+    ),
+    url(img/scar_bg.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  background-position: top;
+  background-blend-mode: difference;
+  position: relative;
+}
+
+.unused {
+  clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+}
