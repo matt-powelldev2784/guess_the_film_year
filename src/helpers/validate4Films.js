@@ -4,7 +4,7 @@ const validate4Films = (films, filmDataCycleCount) => {
   }
 
   films = films.filter(film => {
-    return film.Poster !== 'N/A';
+    return film.Poster !== 'N/A' && film.Title.length < 50;
   });
 
   if (films.length < 4) {

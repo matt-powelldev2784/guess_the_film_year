@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import styles from './FilmItem.module.css';
-
-import Card from '../UI/Card';
 import Guess from './Guess';
 
 //---------------------------------------------------------------------
@@ -34,33 +32,65 @@ const FilmItem = props => {
 
   //dom elements after guess
   if (submitGuess && submitGuess === props.filmYearAnswer) {
-    guessDomElements = (
-      <div>
-        <p className={styles.correct}>Your guess was {submitGuess} Correct!</p>
-      </div>
-    );
+    guessDomElements = <Correct>Your guess was {submitGuess} Correct!</Correct>;
   }
 
   if (submitGuess && !(submitGuess === props.filmYearAnswer)) {
     guessDomElements = (
-      <div>
-        <p className={styles.wrong}>
-          Wrong! The correct year was {props.filmYearAnswer}
-        </p>
-      </div>
+      <Wrong>Wrong! The correct year was {props.filmYearAnswer}</Wrong>
     );
   }
 
   //---------------------------------------------------------------------
 
   return (
-    <Card className={styles.film_card}>
-      <img className={styles.poster} src={props.poster} alt="img" />
-      <p className={styles.title}>{props.title}</p>
-      <p className={styles.title}></p>
+    <FilmCard>
+      <FilmPoster src={props.poster} alt="img" />
+      <FilmTitle>{props.title}</FilmTitle>
+      <p></p>
       {guessDomElements}
-    </Card>
+    </FilmCard>
   );
 };
 
 export default FilmItem;
+
+const FilmCard = styled.div`
+  background-color: none;
+  width: auto;
+  margin: 1rem;
+  padding: 1rem;
+  min-height: 335px;
+`;
+
+const FilmPoster = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  border-radius: 6px;
+  width: 8rem;
+`;
+
+const FilmTitle = styled.div`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #777;
+  text-align: center;
+  font-size: 1rem;
+`;
+
+const Correct = styled.p`
+  color: green;
+  margin: auto;
+  text-align: center;
+  font-size: 1rem;
+`;
+
+const Wrong = styled.p`
+  color: red;
+  margin: auto;
+  text-align: center;
+  font-size: 1rem;
+`;

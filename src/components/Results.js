@@ -1,10 +1,6 @@
-//import { ResultsContainer } from './ResultsContainer.style';
-//import { ResultsBarOuter } from './ResultsBarOuter.style';
-//import { ResultsBarInner } from './ResultsBarInner.style';
-//import './Results.css';
 import React, { useContext } from 'react';
-
 import styled from 'styled-components';
+
 import AnswersContext from '../context/AnswersContext';
 
 

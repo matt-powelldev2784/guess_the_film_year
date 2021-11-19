@@ -7,7 +7,7 @@ const Title = () => {
 export default Title;
 
 const PageTitle = styled.h1`
-  font-size: 3.5rem;
+  font-size: 2rem;
   color: white;
   background-color: #008cba;
 `;

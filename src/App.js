@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
+import backgroundImage from './img/scar_bg.jpg';
 import Title from './components/Title';
 import FilmItem from './components/FilmItem';
 import Results from './components/Results';
@@ -10,8 +12,6 @@ import getFilms from './helpers/getFilms';
 import validate4Films from './helpers/validate4Films';
 import FilmDataErrorItem from './UI/FilmDataErrorItem';
 import FilmDataLoadingItem from './UI/FilmDataLoadingItem';
-
-import styles from './index.module.css';
 
 //---------------------------------------------------------------------
 
@@ -119,23 +119,76 @@ const App = props => {
 
   return (
     <AnswersContext.Provider value={{ wrongAnswers, correctAnswers }}>
-      <header className={styles.header}>
-        <div className={styles.full_page}>
-          <Title />
-          {inputError && appErrorModal}
-          {filmDataError && ErrorItem}
-          {filmDataLoading && LoadingItem}
-          <div className={styles.film_card__container}>
-            {!filmDataLoading && !filmDataError && filmCard}
-          </div>
+      <Header />
+      <AppContainer>
+        <Title />
+        {inputError && appErrorModal}
+        {filmDataError && ErrorItem}
+        {filmDataLoading && LoadingItem}
+        <FilmCardContainer>
+          {!filmDataLoading && !filmDataError && filmCard}
+        </FilmCardContainer>
+        {!filmDataError && !filmDataLoading && (
           <Results
             correctAnswers={correctAnswers}
             wrongAnswers={wrongAnswers}
           />
-        </div>
-      </header>
+        )}
+      </AppContainer>
     </AnswersContext.Provider>
   );
 };
 
 export default App;
+
+const AppContainer = styled.div`
+  color: #777;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  text-align: center;
+  color: white;
+  font-size: 5.3rem;
+  font-family: 'Lato', sans-serif;
+  background-color: rgba(7, 7, 7, 0.9);
+  min-height: 100vh;
+
+  &*,
+  &*::after,
+  &*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+`;
+
+const Header = styled.header`
+  height: 95vh;
+  background-image: linear-gradient(
+      to top,
+      rgba(7, 7, 7, 0.7),
+      rgba(7, 7, 7, 1)
+    ),
+    url(${backgroundImage});
+  background-size: cover;
+  min-height: 100vh;
+  background-position: top;
+  background-blend-mode: difference;
+  position: relative;
+`;
+
+const FilmCardContainer = styled.div`
+  background-color: none;
+  padding: 0rem;
+  margin: 0rem 0rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+  align-items: flex-end;
+`;

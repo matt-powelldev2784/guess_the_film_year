@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from './Button';
-import styles from './Guess.module.css';
+import styled from 'styled-components';
 
 import checkYearIsValid from '../helpers/checkYearIsValid';
 
@@ -9,7 +9,6 @@ import checkYearIsValid from '../helpers/checkYearIsValid';
 const Guess = props => {
   const [enteredYear, setEnteredYear] = useState('');
   const [isValid, setIsValid] = useState(true);
-  const enteredYear1 = useRef();
 
   //---------------------------------------------------------------------
 
@@ -37,7 +36,6 @@ const Guess = props => {
   //---------------------------------------------------------------------
 
   const submitHandler = event => {
-    console.log('useRef example', enteredYear1.current.value);
     event.preventDefault();
 
     let filmYearGuess = enteredYear;
@@ -52,16 +50,54 @@ const Guess = props => {
   //---------------------------------------------------------------------
 
   return (
-    <form className={styles.form} onSubmit={submitHandler}>
-      <label className={styles.guess_title}>Your Guess:</label>
-      <input
-        className={`${styles.input} ${!isValid && styles.nan}`}
-        onChange={yearChangeHandler}
-        ref={enteredYear1}
-      ></input>
+    <Form onSubmit={submitHandler}>
+      <label>Your Guess:</label>
+      {isValid && (
+        <Input onChange={yearChangeHandler} value={enteredYear} autoFocus />
+      )}
+      {!isValid && (
+        <InputError
+          onChange={yearChangeHandler}
+          value={enteredYear}
+          autoFocus
+        />
+      )}
       <Button label="Submit" />
-    </form>
+    </Form>
   );
 };
 
 export default Guess;
+
+const Form = styled.form`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #777;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+`;
+
+const Input = styled.input`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  border: 2px solid;
+  border-color: #008cba;
+  text-align: center;
+  font-size: 1rem;
+`;
+
+const InputError = styled.input`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border: 2px solid;
+  border-color: white;
+  background-color: rgba(255, 0, 0, 0.8);
+  text-align: center;
+  font-size: 1rem;
+`;
