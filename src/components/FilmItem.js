@@ -25,12 +25,10 @@ const FilmItem = props => {
     />
   );
 
-  //check for error
   if (props.error === true) {
     guessDomElements = <div></div>;
   }
 
-  //dom elements after guess
   if (submitGuess && submitGuess === props.filmYearAnswer) {
     guessDomElements = <Correct>Your guess was {submitGuess} Correct!</Correct>;
   }
@@ -47,7 +45,6 @@ const FilmItem = props => {
     <FilmCard>
       <FilmPoster src={props.poster} alt="img" />
       <FilmTitle>{props.title}</FilmTitle>
-      <p></p>
       {guessDomElements}
     </FilmCard>
   );
@@ -73,7 +70,6 @@ const FilmPoster = styled.img`
 `;
 
 const FilmTitle = styled.div`
-  display: block;
   margin-left: auto;
   margin-right: auto;
   color: #777;
