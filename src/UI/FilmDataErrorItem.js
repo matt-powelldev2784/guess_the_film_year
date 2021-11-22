@@ -5,10 +5,9 @@ import errorImg from '../img/error.png';
 
 const reloadPage = () => {
   window.location.reload(true);
-  console.log('a');
 };
 
-const FilmDataErrorItem = props => {
+const FilmDataErrorItem = () => {
   return (
     <React.Fragment>
       <ErrorImage src={errorImg} alt="Film Data Error"></ErrorImage>

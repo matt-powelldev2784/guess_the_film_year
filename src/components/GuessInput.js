@@ -6,7 +6,7 @@ import checkYearIsValid from '../helpers/checkYearIsValid';
 
 //---------------------------------------------------------------------
 
-const Guess = props => {
+const GuessInput = props => {
   const [enteredYear, setEnteredYear] = useState('');
   const [isValid, setIsValid] = useState(true);
 
@@ -67,7 +67,7 @@ const Guess = props => {
   );
 };
 
-export default Guess;
+export default GuessInput;
 
 const Form = styled.form`
   display: block;
@@ -76,7 +76,7 @@ const Form = styled.form`
   color: #777;
   text-align: center;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 400;
 `;
 
 const Input = styled.input`

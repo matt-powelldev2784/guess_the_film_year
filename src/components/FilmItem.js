@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Guess from './Guess';
+import GuessInput from './GuessInput';
 
 //---------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ const FilmItem = props => {
 
   //dom element before guess
   let guessDomElements = (
-    <Guess
+    <GuessInput
       onSaveFilmYear={props.onSaveFilmYear}
       onGuessSubmitted={guessSubmitted}
       filmYearAnswer={props.filmYearAnswer}
@@ -53,7 +53,6 @@ const FilmItem = props => {
 export default FilmItem;
 
 const FilmCard = styled.div`
-  background-color: none;
   width: auto;
   margin: 1rem;
   padding: 1rem;

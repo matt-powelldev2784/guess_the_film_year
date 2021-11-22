@@ -3,12 +3,8 @@ import styled from 'styled-components';
 
 import AnswersContext from '../context/AnswersContext';
 
-
 const Results = props => {
   const answers = useContext(AnswersContext);
-
-  //let correctAnswers = `${answers.correctAnswers * 36}px`;
-  // let wrongAnswers = `${props.wrongAnswers * 36}px`;
 
   return (
     <ResultsContainer>
@@ -33,7 +29,6 @@ const Results = props => {
 
 export default Results;
 
-
 //---------------------------------------------------------------------
 
 const ResultsContainer = styled.div`
@@ -46,6 +41,7 @@ const ResultsContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 3rem;
+  color: white;
 `;
 
 const ResultsBarOuter = styled.div`

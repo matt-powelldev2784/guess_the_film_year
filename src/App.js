@@ -75,7 +75,7 @@ const App = props => {
   };
 
   const clearInputError = () => {
-    setInputError(null);
+    setInputError(false);
   };
 
   //---------------------------------------------------------------------
@@ -95,8 +95,6 @@ const App = props => {
   const LoadingItem = <FilmDataLoadingItem />;
 
   //---------------------------------------------------------------------
-
-  console.log('map film data', filmData);
 
   let filmCard;
   if (filmData) {
@@ -135,27 +133,12 @@ const App = props => {
 export default App;
 
 const AppContainer = styled.div`
-  color: #777;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   position: absolute;
   top: 0;
   width: 100vw;
   text-align: center;
-  color: white;
-  font-size: 5.3rem;
-  font-family: 'Lato', sans-serif;
   background-color: rgba(7, 7, 7, 0.9);
   min-height: 100vh;
-
-  &*,
-  &*::after,
-  &*::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
 `;
 
 const Header = styled.header`
@@ -174,10 +157,6 @@ const Header = styled.header`
 `;
 
 const FilmCardContainer = styled.div`
-  background-color: none;
-  padding: 0rem;
-  margin: 0rem 0rem;
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
