@@ -65,20 +65,16 @@ const App = () => {
     setInputError(false);
   };
 
-  //---------------------------------------------------------------------
-
-  const appErrorModal = (
+  const inputErrorModal = (
     <ErrorModal
       title="Error"
       message="Enter a valid year. Please use the 4 digit YYYY format."
       label="Ok"
-      //className={styles.error_modal}
       onConfirm={clearInputError}
     />
   );
 
   const ErrorItem = <FilmDataErrorItem />;
-
   const LoadingItem = <FilmDataLoadingItem />;
 
   //---------------------------------------------------------------------
@@ -107,7 +103,7 @@ const App = () => {
       <Header />
       <AppContainer>
         <Title />
-        {inputError && appErrorModal}
+        {inputError && inputErrorModal}
         {filmDataError && ErrorItem}
         {filmDataLoading && LoadingItem}
         <FilmCardContainer>

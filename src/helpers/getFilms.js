@@ -9,7 +9,6 @@ const getFilms = async specifiedRandomWord => {
       randomWord = specifiedRandomWord;
     }
 
-    console.log(randomWord);
     const films = await getFilmsApi(
       `https://www.omdbapi.com/?s=${randomWord}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
     );
