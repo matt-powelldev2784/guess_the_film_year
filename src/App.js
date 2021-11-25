@@ -9,46 +9,32 @@ import ErrorModal from './UI/ErrorModal';
 import AnswersContext from './context/AnswersContext';
 
 import getFilms from './helpers/getFilms';
-import validate4Films from './helpers/validate4Films';
+
 import FilmDataErrorItem from './UI/FilmDataErrorItem';
 import FilmDataLoadingItem from './UI/FilmDataLoadingItem';
 
 //---------------------------------------------------------------------
 
-const App = props => {
+const App = () => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
   const [inputError, setInputError] = useState(false);
-  const [filmDataLoading, SetFilmDataLoading] = useState(true);
+  const [filmDataLoading, setFilmDataLoading] = useState(true);
   const [filmData, setFilmData] = useState('');
-  const [filmDataError, SetFilmDataError] = useState(false);
+  const [filmDataError, setFilmDataError] = useState(false);
 
   //---------------------------------------------------------------------
 
   useEffect(() => {
-    let films;
-    let filmDataCycleCount = 0;
-
-    let get4Films = async () => {
-      filmDataCycleCount++;
-
-      films = await getFilms();
-
-      films = validate4Films(films, filmDataCycleCount);
-
-      if (films.status === 'less_than_4_films') {
-        get4Films();
-        return;
-      }
-
-      if (films.status === 'ok') {
-        SetFilmDataLoading(false);
-        setFilmData(films.filmsData);
-      }
-
-      if (films.status === 'film_api_error') {
-        SetFilmDataLoading(false);
-        SetFilmDataError(true);
+    const get4Films = async () => {
+      try {
+        const films = await getFilms();
+        await setFilmData(films);
+        setFilmDataLoading(false);
+        return films;
+      } catch (e) {
+        setFilmDataError(true);
+        setFilmDataLoading(false);
       }
     };
     get4Films();
@@ -96,14 +82,16 @@ const App = props => {
 
   //---------------------------------------------------------------------
 
+  console.log('final film data', filmData);
+
   let filmCard;
   if (filmData) {
-    filmCard = filmData.map((filmItem, i) => (
+    filmCard = filmData.map(filmItem => (
       <FilmItem
-        key={i}
-        title={filmItem.Title}
-        filmYearAnswer={filmItem.Year}
-        poster={filmItem.Poster}
+        key={filmItem.key}
+        title={filmItem.title}
+        filmYearAnswer={filmItem.year}
+        poster={filmItem.poster}
         error={filmItem.Error}
         onRecordAnswers={recordAnswers}
         renderInputError={renderInputError}
