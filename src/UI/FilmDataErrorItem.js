@@ -7,11 +7,13 @@ const reloadPage = () => {
   window.location.reload(true);
 };
 
-const FilmDataErrorItem = () => {
+const FilmDataErrorItem = e => {
   return (
     <React.Fragment>
       <ErrorImage src={errorImg} alt="Film Data Error"></ErrorImage>
-      <ErrorMessage>Error Loading Films. Please try agin later</ErrorMessage>
+      <ErrorMessage>
+        Error Loading Films. Please try to refresh page
+      </ErrorMessage>
       <Form onSubmit={reloadPage}>
         <Button label="Refresh Page" />
       </Form>

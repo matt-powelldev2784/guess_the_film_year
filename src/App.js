@@ -9,6 +9,7 @@ import ErrorModal from './UI/ErrorModal';
 import AnswersContext from './context/AnswersContext';
 
 import getFilms from './helpers/getFilms';
+import validateFilms from './helpers/validatedFilms';
 
 import FilmDataErrorItem from './UI/FilmDataErrorItem';
 import FilmDataLoadingItem from './UI/FilmDataLoadingItem';
@@ -29,9 +30,9 @@ const App = () => {
     const get4Films = async () => {
       try {
         const films = await getFilms();
-        await setFilmData(films);
-        setFilmDataLoading(false);
-        return films;
+        const validatedFilms = await validateFilms(films);
+        validatedFilms.length < 4 ? get4Films() : setFilmDataLoading(false);
+        setFilmData(validatedFilms);
       } catch (e) {
         setFilmDataError(true);
         setFilmDataLoading(false);
