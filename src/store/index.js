@@ -1,25 +1,24 @@
-import { createStore } from 'redux';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const answersInitalState = { correctAnswers: 0, wrongAnswers: 0 };
 
-const resultsReducer = (state = answersInitalState, action) => {
-  if (action.type === 'correct') {
-    return {
-      correctAnswers: state.correctAnswers + 1,
-      wrongAnswers: state.wrongAnswers,
-    };
-  }
+const resultsSlice = createSlice({
+  name: 'results',
+  initialState: answersInitalState,
+  reducers: {
+    correctAnswer(state) {
+      state.correctAnswers++;
+    },
+    wrongAnswer(state) {
+      state.wrongAnswers++;
+    },
+  },
+});
 
-  if (action.type === 'wrong') {
-    return {
-      correctAnswers: state.correctAnswers,
-      wrongAnswers: state.wrongAnswers + 1,
-    };
-  }
+const store = configureStore({
+  reducer: resultsSlice.reducer,
+});
 
-  return state;
-};
-
-const store = createStore(resultsReducer);
+export const resultsActions = resultsSlice.actions;
 
 export default store;

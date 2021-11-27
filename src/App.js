@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch } from 'react-redux';
+import { resultsActions } from './store';
 import styled from 'styled-components';
 
 import backgroundImage from './img/scar_bg.jpg';
@@ -41,15 +42,15 @@ const App = () => {
 
   //---------------------------------------------------------------------
 
-  const dispatch = useDispatch();
-
   const recordResults = (filmYearGuess, filmYearAnswer) => {
     if (filmYearGuess === filmYearAnswer) {
-      dispatch({ type: 'correct' });
+      dispatch(resultsActions.correctAnswer());
     } else {
-      dispatch({ type: 'wrong' });
+      dispatch(resultsActions.wrongAnswer());
     }
   };
+
+  const dispatch = useDispatch();
 
   //---------------------------------------------------------------------
 
@@ -69,9 +70,6 @@ const App = () => {
       onConfirm={clearInputError}
     />
   );
-
-  const ErrorItem = <FilmDataErrorItem />;
-  const LoadingItem = <FilmDataLoadingItem />;
 
   //---------------------------------------------------------------------
 
@@ -99,8 +97,8 @@ const App = () => {
       <AppContainer>
         <Title />
         {inputError && inputErrorModal}
-        {filmDataError && ErrorItem}
-        {filmDataLoading && LoadingItem}
+        {filmDataError && <FilmDataErrorItem />}
+        {filmDataLoading && <FilmDataLoadingItem />}
         <FilmCardContainer>
           {!filmDataLoading && !filmDataError && filmCard}
         </FilmCardContainer>
