@@ -25,10 +25,6 @@ const FilmItem = props => {
     />
   );
 
-  if (props.error === true) {
-    guessDomElements = <div></div>;
-  }
-
   if (submitGuess && submitGuess === props.filmYearAnswer) {
     guessDomElements = <Correct>Your guess was {submitGuess} Correct!</Correct>;
   }

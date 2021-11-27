@@ -89,7 +89,6 @@ const App = () => {
         title={filmItem.title}
         filmYearAnswer={filmItem.year}
         poster={filmItem.poster}
-        error={filmItem.Error}
         onRecordAnswers={recordAnswers}
         renderInputError={renderInputError}
       />
