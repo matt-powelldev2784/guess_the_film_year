@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Button from './Button';
 import styled from 'styled-components';
 
+import Button from './Button';
 import checkYearIsValid from '../helpers/checkYearIsValid';
 
 //---------------------------------------------------------------------

@@ -1,28 +1,32 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import AnswersContext from '../context/AnswersContext';
-
-const Results = props => {
-  const answers = useContext(AnswersContext);
+const Results = () => {
+  const answersRedux = useSelector(state => {
+    return {
+      wrongAnswers: state.wrongAnswers,
+      correctAnswers: state.correctAnswers,
+    };
+  });
 
   return (
     <ResultsContainer>
-      <div>Correct {answers.correctAnswers}</div>
+      <div>Correct {answersRedux.correctAnswers}</div>
       <ResultsBarOuter>
         <ResultsBarInner
-          barHeight={`${answers.correctAnswers * 36}px`}
+          barHeight={`${answersRedux.correctAnswers * 36}px`}
           backgroundColor="green"
         />
       </ResultsBarOuter>
 
       <ResultsBarOuter>
         <ResultsBarInner
-          barHeight={`${answers.wrongAnswers * 36}px`}
+          barHeight={`${answersRedux.wrongAnswers * 36}px`}
           backgroundColor="red"
         />
       </ResultsBarOuter>
-      <div>{answers.wrongAnswers} Incorrect</div>
+      <div>{answersRedux.wrongAnswers} Incorrect</div>
     </ResultsContainer>
   );
 };

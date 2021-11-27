@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import backgroundImage from './img/scar_bg.jpg';
@@ -6,7 +7,6 @@ import Title from './components/Title';
 import FilmItem from './components/FilmItem';
 import Results from './components/Results';
 import ErrorModal from './UI/ErrorModal';
-import AnswersContext from './context/AnswersContext';
 
 import getFilms from './helpers/getFilms';
 import validateFilms from './helpers/validatedFilms';
@@ -17,8 +17,6 @@ import FilmDataLoadingItem from './UI/FilmDataLoadingItem';
 //---------------------------------------------------------------------
 
 const App = () => {
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [wrongAnswers, setWrongAnswers] = useState(0);
   const [inputError, setInputError] = useState(false);
   const [filmDataLoading, setFilmDataLoading] = useState(true);
   const [filmData, setFilmData] = useState('');
@@ -43,15 +41,13 @@ const App = () => {
 
   //---------------------------------------------------------------------
 
-  const recordAnswers = (filmYearGuess, filmYearAnswer) => {
+  const dispatch = useDispatch();
+
+  const recordResults = (filmYearGuess, filmYearAnswer) => {
     if (filmYearGuess === filmYearAnswer) {
-      setCorrectAnswers(prev => {
-        return prev + 1;
-      });
+      dispatch({ type: 'correct' });
     } else {
-      setWrongAnswers(prev => {
-        return prev + 1;
-      });
+      dispatch({ type: 'wrong' });
     }
   };
 
@@ -89,8 +85,8 @@ const App = () => {
         title={filmItem.title}
         filmYearAnswer={filmItem.year}
         poster={filmItem.poster}
-        onRecordAnswers={recordAnswers}
         renderInputError={renderInputError}
+        onRecordAnswersRedux={recordResults}
       />
     ));
   }
@@ -98,7 +94,7 @@ const App = () => {
   //---------------------------------------------------------------------
 
   return (
-    <AnswersContext.Provider value={{ wrongAnswers, correctAnswers }}>
+    <Fragment>
       <Header />
       <AppContainer>
         <Title />
@@ -110,7 +106,7 @@ const App = () => {
         </FilmCardContainer>
         {!filmDataError && !filmDataLoading && <Results />}
       </AppContainer>
-    </AnswersContext.Provider>
+    </Fragment>
   );
 };
 

@@ -10,7 +10,8 @@ const FilmItem = props => {
 
   const guessSubmitted = filmYearGuess => {
     setSubmitGuess(filmYearGuess);
-    props.onRecordAnswers(filmYearGuess, props.filmYearAnswer);
+    //props.onRecordAnswers(filmYearGuess, props.filmYearAnswer);
+    props.onRecordAnswersRedux(filmYearGuess, props.filmYearAnswer);
   };
 
   //---------------------------------------------------------------------
